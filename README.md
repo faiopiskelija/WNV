@@ -1,5 +1,6 @@
 # WNV
 Weather, News &amp; Visuals Dashboard
+![image](https://github.com/user-attachments/assets/0bae6a04-d97e-47a9-87d6-7c6eaacc94d1)
 
 
 A dynamic web application that fetches and displays real-time weather, news headlines, and cityscape backgrounds based on user-inputted city names. Built with JavaScript, OpenWeather API, NewsAPI, and Unsplash.
