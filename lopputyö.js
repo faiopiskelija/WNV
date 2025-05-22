@@ -1,6 +1,7 @@
 /* My API keys for access to API requests*/
 const API_key_openweather = '6e6585db52d9a23c22236394533cf25c'; 
 const AccessKey = `U9zhefkoCEJjkAzC8fcHLYwMcz9BuPEqGN8bU30SF_g`;
+
 /* We can also use LocalStorage for saving city, which indicated by user*/
 function saveUserInput (user_city){
     localStorage.setItem('userinput', user_city);
@@ -32,18 +33,29 @@ function displayDataError (user_city, error){
     create_p.innerHTML = `Error: ${error}, ${user_city} is not exist`;
     data_result.appendChild(create_p);
 }
-/*For display main data about weather in HTML*/
+/*Display data about current weather in HTML*/
 function displayData(user_city, city_temp, city_temp_max, city_feels_like, city_weather_img, description, wind, city_humidity){
     const create_p = document.createElement('p');
     let create_icon = document.createElement('img');
+    let create_small_icon = document.createElement('img');
     const data_result = document.getElementById('data_result');
 
+    create_small_icon.src = 'icons8-rain-cloud-50.png';
+    create_small_icon.classList = 'small_icon';
+
     let create_header3 = document.createElement('h3');
-    create_header3.innerHTML = `Current weather in ${user_city}:`;
+    create_header3.innerHTML = `Current weather in ${user_city}`;
+
+    let header_container = document.createElement('div');
+    header_container.className = 'header_with_icon';
+    header_container.appendChild(create_small_icon);
+    header_container.appendChild(create_header3);
+
+
     create_icon.src = city_weather_img;
     create_p.innerHTML = `<br>${city_temp}°<br>${description}<br>💨 ${wind} m/s <br>Max tempertature: ${city_temp_max}°<br> Now it feels like: ${city_feels_like}°<br>🌫️${city_humidity}%`;
 
-    data_result.appendChild(create_header3);
+    data_result.appendChild(header_container);
     data_result.appendChild(create_icon);
     data_result.appendChild(create_p);
 }
@@ -54,12 +66,20 @@ function displayDataForecast(user_city, forecast_day_1_max, forecast_day_1_min, 
     const create_icon = document.createElement('img');
     create_header3 = document.createElement('h3');
 
+    let create_small_icon_forecast = document.createElement('img')
+    create_small_icon_forecast.src = 'icons8-dew-point-50.png';
+    create_small_icon_forecast.classList = 'small_icon';
 
-    create_header3.innerHTML = `Forecast for tomorrow in ${user_city}:`;
-    create_p.innerHTML = `<br>${forecast_day_1_max}/${forecast_day_1_min}<br>${forecast_description_day}/${forecast_description_night}<br>🌫️${forecast_humidity}%`;
+    let header_container = document.createElement('div');
+    header_container.className = 'header_with_icon_forecast';
+    header_container.appendChild(create_small_icon_forecast);
+    header_container.appendChild(create_header3);
+
+    create_header3.innerHTML = `Forecast for tomorrow in ${user_city}`;
+    create_p.innerHTML = `<br>${forecast_day_1_max}°/${forecast_day_1_min}°<br>${forecast_description_day}/${forecast_description_night}<br>🌫️${forecast_humidity}%`;
     create_icon.src = forecast_icon;
 
-    data_forecast.appendChild(create_header3);
+    data_forecast.appendChild(header_container);
     data_forecast.appendChild(create_icon);
     data_forecast.appendChild(create_p);
 
@@ -75,17 +95,27 @@ function displayNews(user_city, news_headline, news_date, news_source, news_imag
         return;
     }
 
+    let create_small_icon_news = document.createElement('img');
+    create_small_icon_news.src = 'news.png'
+    create_small_icon_news.classList = 'small_icon'
+
     create_header3 = document.createElement('h3');
     const headline = document.createElement('p');
 
     create_header3.innerHTML = (`News about ${user_city}`)
     headline.innerHTML = (news_headline);
 
+    
+    let header_container_news = document.createElement('div');
+    header_container_news.className = 'header_with_icon';
+    header_container_news.appendChild(create_small_icon_news);
+    header_container_news.appendChild(create_header3);
+
     const title = document.createElement('h4');
     title.innerHTML = `<a href="${news_url}" target="_blank">${news_headline}</a>`;
     title.style.marginBottom = '10px';
 
-    /*if image loading very long time, trying make image preloader with GIF*/
+    /*if image loading very long time, trying make image preloader with GIF for news block*/
     const image_wrapper = document.createElement('div')
     const loading_gif = document.createElement('img');
     loading_gif.src = 'loading.gif';
@@ -109,7 +139,7 @@ function displayNews(user_city, news_headline, news_date, news_source, news_imag
     description_news.innerHTML = news_description;
     description_news.classList.add('news-description');
 
-    data_news.appendChild(create_header3);
+    data_news.appendChild(header_container_news); 
     data_news.appendChild(image_wrapper);
     data_news.appendChild(title);
     data_news.appendChild(sourceAndDate);
@@ -241,7 +271,7 @@ window.onload = function(){
         data_forecast.style.display = `block`;
         data_news.style.display = `block`;
         const city = document.getElementById('city').value.trim();
-        
+        input_line.focus();
 
         if (check_userInpit(city) == false) {
             return; 
