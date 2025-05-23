@@ -40,7 +40,7 @@ function displayData(user_city, city_temp, city_temp_max, city_feels_like, city_
     let create_small_icon = document.createElement('img');
     const data_result = document.getElementById('data_result');
 
-    create_small_icon.src = 'icons8-rain-cloud-50.png';
+    create_small_icon.src = 'img/icons8-rain-cloud-50.png';
     create_small_icon.classList = 'small_icon';
 
     let create_header3 = document.createElement('h3');
@@ -67,7 +67,7 @@ function displayDataForecast(user_city, forecast_day_1_max, forecast_day_1_min, 
     create_header3 = document.createElement('h3');
 
     let create_small_icon_forecast = document.createElement('img')
-    create_small_icon_forecast.src = 'icons8-dew-point-50.png';
+    create_small_icon_forecast.src = 'img/icons8-dew-point-50.png';
     create_small_icon_forecast.classList = 'small_icon';
 
     let header_container = document.createElement('div');
@@ -96,7 +96,7 @@ function displayNews(user_city, news_headline, news_date, news_source, news_imag
     }
 
     let create_small_icon_news = document.createElement('img');
-    create_small_icon_news.src = 'news.png'
+    create_small_icon_news.src = 'img/news.png'
     create_small_icon_news.classList = 'small_icon'
 
     create_header3 = document.createElement('h3');
