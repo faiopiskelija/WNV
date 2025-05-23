@@ -28,6 +28,8 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
+    cursor: url('img/icons8-cursor-66.png'), auto;
+
 }
 
 /* Form */
@@ -100,6 +102,10 @@ button:hover {
     display: inline-block !important;
 }
 
+#data_news a {
+    color: cornflowerblue;
+}
+
 .news-description {
     text-align: left; 
     font-size: 14px !important; 
@@ -136,21 +142,29 @@ body::before {
   }
 }
 
-#gif-container {
-    position: absolute;
-    top: 50%; /* Центрируем по вертикали */
-    left: 50%; /* Центрируем по горизонтали */
-    transform: translate(-50%, -50%); /* Центрирование с учётом размеров */
-    width: 100%;
-    height: 100%;
-    background: url('1_loading.gif') no-repeat center center; /* Путь к GIF */
-    background-size: cover;
-    opacity: 0; /* Скрыто по умолчанию */
-    transition: opacity 0.3s ease-in-out; /* Плавный эффект появления */
-    pointer-events: none; /* Чтобы элемент не блокировал клики */
+.input-icon {
+  width: 20px; 
+  height: 20px;
+  vertical-align: middle; 
+  margin-bottom: 2px;
 }
 
-/* Показать GIF при ховере на #title_name */
-#title_name:hover + #gif-container {
-    opacity: 1; /* Показать GIF при ховере */
+.header_with_icon {
+  display: flex;
+  align-items: center;
+  
+  width: 340px;
+  height: 24px;
+}
+
+.header_with_icon_forecast {
+  display: flex;
+  align-items: center;
+
+}
+
+.small_icon {
+  width: 24px !important;
+  
+  margin-right: 5px !important;
 }
